@@ -1,0 +1,11 @@
+batch_size = 100
+img_height = 32
+img_width = 32
+img_depth = 3
+noise_size = 100
+alpha = 0.01
+path = 'E:\人工智能基础数据集\cifar-10-python'
+model_path = './model/'
+model_name = 'cifar10_resnet18_model.ckpt'
+epoh = 20
+learning_rate = 0.001
