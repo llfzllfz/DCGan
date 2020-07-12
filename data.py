@@ -8,6 +8,7 @@ class cifar_data:
     def __init__(self):
         self.trainX,self.trainY = self.train_data()
         self.testX,self.testY = self.test_data()
+        self.trainX = self.trainX[self.trainY.reshape(-1)==7]
         self.batch_size = config.batch_size
         self.now_idx = 0
         self.test_idx = 0
@@ -16,10 +17,7 @@ class cifar_data:
         with open(filename,'rb') as f:
             dicts = pickle.load(f,encoding = 'bytes')
         return dicts
-    
-    def one_hot(self,x,n):
-        return (np.arange(n) == x[:,None]).astype(np.integer)
-    
+
     def train_data(self):
         trainX = []
         trainY = []
@@ -29,7 +27,6 @@ class cifar_data:
             X = np.array(X).reshape(10000,3,32,32).transpose((0,2,3,1))
             label = data[b'labels']
             label = np.array(label)
-            label = self.one_hot(label,10)
             if idx == 1:
                 trainX = X
                 trainY = label
@@ -44,7 +41,6 @@ class cifar_data:
         X = np.array(X).reshape(10000,3,32,32).transpose((0,2,3,1))
         label = data[b'labels']
         label = np.array(label)
-        label = self.one_hot(label,10)
         return X,label
     
     def next_batch(self):

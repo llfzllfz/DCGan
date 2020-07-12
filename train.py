@@ -5,13 +5,13 @@ import network
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-
+tf.reset_default_graph()
 def img_show(X):
     #print(X.shape)
     for x in X:
         x = (x+1)/2
-        print(x.shape,x.max(),x.min())
-        plt.imshow(x)
+        #print(x.shape,x.max(),x.min())
+        plt.imshow(x, cmap='Greys_r')
         break
     plt.show()
 
